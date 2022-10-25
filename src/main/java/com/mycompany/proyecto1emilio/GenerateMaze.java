@@ -33,16 +33,16 @@ public class GenerateMaze {
         public void adjacentCells() {
                 for (int i = 0; i < this.mazeRows; i++) {
                         for (int j = 0; j < this.mazeColumns; j++) {
-                                if (j > 0) {
+                                if (j > 0) { //fila mayor a 0, se puede asinar adyacente arriba
                                         this.cells[i][j].setCeldaArriba(this.cells[i - 1][j]);
                                 }
-                                if (i < this.mazeRows - 1) {
+                                if (i < this.mazeRows - 1) {//Si la fila es menor que el total de filas se puede asignar un celda adyacente abajo
                                         this.cells[i][j].setCeldaAbajo(this.cells[i + 1][j]);
                                 }
-                                if (j < this.mazeColumns - 1) {
+                                if (j < this.mazeColumns - 1) { //Si la columna es menor que el total de columnas se puede asignar un vecino derecho
                                         this.cells[i][j].setCeldaDerecha(this.cells[i][j + i]);
                                 }
-                                if (j > 0) {
+                                if (j > 0) {//Si la columna es mayor que cero se puede asignar un vecino izquierdo.
                                         this.cells[i][j].setCeldaIzquierda(this.cells[i][j - 1]);
                                 }
                                 
