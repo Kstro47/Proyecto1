@@ -61,7 +61,7 @@ public class ShowLaberinto extends javax.swing.JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g); //Herencia del método padre.
-        g.setColor(Color.BLUE); //Coloreamos todo lo que dibujaremos en el JPanel de color negro.
+        g.setColor(Color.BLUE); //Coloreamos todo lo que dibujaremos en el JPanel de color azul.
         g.drawRect(0, 0, laberinto.getListaCorridas().get(laberinto.getListaCorridas().size()-1).getFilasLaberinto()*this.anchoCelda, laberinto.getListaCorridas().get(laberinto.getListaCorridas().size()-1).getColumnasLaberinto()*this.anchoCelda);
 
             
