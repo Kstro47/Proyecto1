@@ -27,9 +27,14 @@ public class Main extends javax.swing.JFrame {
         // Las Dimensiones se generan de forma Aleatoria pero el usuario puede realizar ajustes
         // En investigaciones realizadas recomiendan considerar un
         // Minimo de 11 Filas y 11 Columnas
-        Filas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
-        Columnas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
-        AnchoCelda.setText(String.valueOf((int) (30)));
+        filas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
+        sliderFilas.setValue(Integer.parseInt(filas.getText()));
+ 
+        columnas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
+        sliderColumnas.setValue(Integer.parseInt(columnas.getText()));
+        
+        anchoCelda.setText(String.valueOf((int) (30)));
+        
         laberinto = new Laberinto(); //Creamos el laberinto.
 
     }
@@ -41,14 +46,14 @@ public class Main extends javax.swing.JFrame {
         Etiqueta1 = new javax.swing.JLabel();
         Etiqueta3 = new javax.swing.JLabel();
         Etiqueta2 = new javax.swing.JLabel();
-        Columnas = new javax.swing.JTextField();
-        Filas = new javax.swing.JTextField();
-        AnchoCelda = new javax.swing.JTextField();
+        columnas = new javax.swing.JTextField();
+        filas = new javax.swing.JTextField();
+        anchoCelda = new javax.swing.JTextField();
         Etiqueta4 = new javax.swing.JLabel();
         ButtonCrear = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
-        jSlider2 = new javax.swing.JSlider();
-        jSlider3 = new javax.swing.JSlider();
+        sliderFilas = new javax.swing.JSlider();
+        sliderColumnas = new javax.swing.JSlider();
+        sliderAnchoCelda = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +85,30 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        sliderFilas.setMinimum(11);
+        sliderFilas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderFilasStateChanged(evt);
+            }
+        });
+
+        sliderColumnas.setMinimum(11);
+        sliderColumnas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderColumnasStateChanged(evt);
+            }
+        });
+
+        sliderAnchoCelda.setMinimum(10);
+        sliderAnchoCelda.setMinorTickSpacing(9);
+        sliderAnchoCelda.setToolTipText("");
+        sliderAnchoCelda.setValue(30);
+        sliderAnchoCelda.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderAnchoCeldaStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,14 +125,14 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(Etiqueta4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Filas)
-                            .addComponent(Columnas)
-                            .addComponent(AnchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(filas)
+                            .addComponent(columnas)
+                            .addComponent(anchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sliderColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sliderAnchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sliderFilas, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,21 +142,21 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Etiqueta1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Filas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Etiqueta3)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sliderFilas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sliderColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Columnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(columnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Etiqueta2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(AnchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(anchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Etiqueta4))
-                    .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sliderAnchoCelda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(ButtonCrear)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -138,25 +167,25 @@ public class Main extends javax.swing.JFrame {
 
     private void ButtonCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearMouseClicked
         //Si los campos de texto están vacíos muestra un mensaje de error.
-        if ("".equals(Filas.getText()) || Filas.getText().isEmpty()) {
+        if ("".equals(filas.getText()) || filas.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error! Por favor, Ingrese Número de Filas");
-            Filas.requestFocus();
+            filas.requestFocus();
 
         } else {
-            if ("".equals(Columnas.getText()) || Columnas.getText().isEmpty()) {
+            if ("".equals(columnas.getText()) || columnas.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Error! Por favor, Por favor, Ingrese Número de Columnas");
-                Columnas.requestFocus();
+                columnas.requestFocus();
             } else {
-                if ("".equals(AnchoCelda.getText()) || AnchoCelda.getText().isEmpty()) {
+                if ("".equals(anchoCelda.getText()) || anchoCelda.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Error! Por favor, Por favor, Ingrese el Ancho de las Celdas");
-                    AnchoCelda.requestFocus();
+                    anchoCelda.requestFocus();
                 } else //Si todos los campos están llenos 
                 {
                     //Manejo de excepción en caso de que el usuario ingrese letras en vez de números.
                     try {
                         //Si los números ingresados por el usuario en los campos de texto son correctos crea el JDialog del laberinto y hazlo visible.
-                        if ((Integer.parseInt(Filas.getText()) >= 11) && (Integer.parseInt(Columnas.getText()) >= 11) && (Integer.parseInt(AnchoCelda.getText()) >= 10 && Integer.parseInt(this.AnchoCelda.getText()) % 10 == 0)) {
-                            ContenedorLaberinto Laberinto = new ContenedorLaberinto(new javax.swing.JFrame(), true, Integer.parseInt(Columnas.getText()), Integer.parseInt(Filas.getText()), laberinto, Integer.parseInt(this.AnchoCelda.getText()));
+                        if ((Integer.parseInt(filas.getText()) >= 11) && (Integer.parseInt(columnas.getText()) >= 11) && (Integer.parseInt(anchoCelda.getText()) >= 10 && Integer.parseInt(this.anchoCelda.getText()) % 10 == 0)) {
+                            ContenedorLaberinto Laberinto = new ContenedorLaberinto(new javax.swing.JFrame(), true, Integer.parseInt(columnas.getText()), Integer.parseInt(filas.getText()), laberinto, Integer.parseInt(this.anchoCelda.getText()));
                             //  super(parent, modal); //Heredamos el constructor del padre de este JDialog.
 
                             Laberinto.setVisible(true);
@@ -175,6 +204,27 @@ public class Main extends javax.swing.JFrame {
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
+
+    private void sliderFilasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderFilasStateChanged
+        
+        filas.setText(String.valueOf(sliderFilas.getValue()));
+        
+    }//GEN-LAST:event_sliderFilasStateChanged
+
+    private void sliderColumnasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderColumnasStateChanged
+        
+        columnas.setText(String.valueOf(sliderColumnas.getValue()));
+        
+    }//GEN-LAST:event_sliderColumnasStateChanged
+
+    private void sliderAnchoCeldaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderAnchoCeldaStateChanged
+        
+        int p = sliderAnchoCelda.getValue()/10;
+        
+        anchoCelda.setText(String.valueOf(p*10));
+        //anchoCelda.setText(String.valueOf(sliderAnchoCelda.getValue()));
+        
+    }//GEN-LAST:event_sliderAnchoCeldaStateChanged
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -205,16 +255,16 @@ public class Main extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AnchoCelda;
     private javax.swing.JButton ButtonCrear;
-    private javax.swing.JTextField Columnas;
     private javax.swing.JLabel Etiqueta1;
     private javax.swing.JLabel Etiqueta2;
     private javax.swing.JLabel Etiqueta3;
     private javax.swing.JLabel Etiqueta4;
-    private javax.swing.JTextField Filas;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider3;
+    private javax.swing.JTextField anchoCelda;
+    private javax.swing.JTextField columnas;
+    private javax.swing.JTextField filas;
+    private javax.swing.JSlider sliderAnchoCelda;
+    private javax.swing.JSlider sliderColumnas;
+    private javax.swing.JSlider sliderFilas;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,7 +3,7 @@ package Vista;
 
 
 /**
-* GUI.ContenedorLaberinto
+* Vista.ContenedorLaberinto
 * 
 * La clase ContenedorLaberinto es la encargada de contener y mostrar el JPanel en el cual se dibujará el laberinto
 */
@@ -11,7 +11,6 @@ package Vista;
 //Librerías
 import Controlador.Laberinto; //Importar el código de la clase Laberinto del paquete Codigo.
 import java.awt.Color; //Librería para colocarle un color de fondo al actual JDialog.
-import org.apache.commons.lang3.RandomStringUtils; //Librería para generar caracteres alfanuméricos random.
 
 public class ContenedorLaberinto extends javax.swing.JDialog
 {
@@ -20,7 +19,6 @@ public class ContenedorLaberinto extends javax.swing.JDialog
     * 
     * @param ancho es el ancho del laberinto especificado por el usuario en el JFrame Seleccion.
     * @param alto es el alto del laberinto especificado por usuario en el JFrame Seleccion.
-    * @param proyecto es el proyecto que se creó al abrir un nuevo JFrame Seleccion.
     * @param anchoCelda es el ancho de la celda del laberinto especificado por el usuario en el JFrame Seleccion.
     */
     public ContenedorLaberinto(java.awt.Frame parent, boolean modal, int ancho, int alto, Laberinto laberinto, int anchoCelda) 

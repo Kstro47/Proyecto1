@@ -36,17 +36,17 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Filas" max="32767" attributes="0"/>
-                          <Component id="Columnas" max="32767" attributes="0"/>
-                          <Component id="AnchoCelda" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="filas" max="32767" attributes="0"/>
+                          <Component id="columnas" max="32767" attributes="0"/>
+                          <Component id="anchoCelda" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSlider2" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                  <Component id="jSlider3" min="-2" pref="113" max="-2" attributes="0"/>
-                  <Component id="jSlider1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="sliderColumnas" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="sliderAnchoCelda" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="sliderFilas" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="97" max="32767" attributes="0"/>
           </Group>
@@ -59,25 +59,25 @@
               <Component id="Etiqueta1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Filas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="filas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Etiqueta3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSlider1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sliderFilas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
+                  <Component id="sliderColumnas" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Columnas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="columnas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Etiqueta2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AnchoCelda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="anchoCelda" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Etiqueta4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jSlider3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sliderAnchoCelda" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="ButtonCrear" min="-2" max="-2" attributes="0"/>
@@ -118,11 +118,11 @@
         <Property name="text" type="java.lang.String" value="Columnas (Ancho)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Columnas">
+    <Component class="javax.swing.JTextField" name="columnas">
     </Component>
-    <Component class="javax.swing.JTextField" name="Filas">
+    <Component class="javax.swing.JTextField" name="filas">
     </Component>
-    <Component class="javax.swing.JTextField" name="AnchoCelda">
+    <Component class="javax.swing.JTextField" name="anchoCelda">
     </Component>
     <Component class="javax.swing.JLabel" name="Etiqueta4">
       <Properties>
@@ -144,11 +144,32 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonCrearActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider1">
+    <Component class="javax.swing.JSlider" name="sliderFilas">
+      <Properties>
+        <Property name="minimum" type="int" value="11"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sliderFilasStateChanged"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider2">
+    <Component class="javax.swing.JSlider" name="sliderColumnas">
+      <Properties>
+        <Property name="minimum" type="int" value="11"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sliderColumnasStateChanged"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JSlider" name="jSlider3">
+    <Component class="javax.swing.JSlider" name="sliderAnchoCelda">
+      <Properties>
+        <Property name="minimum" type="int" value="10"/>
+        <Property name="minorTickSpacing" type="int" value="9"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="value" type="int" value="30"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sliderAnchoCeldaStateChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

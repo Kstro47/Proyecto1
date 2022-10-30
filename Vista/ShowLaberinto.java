@@ -116,8 +116,10 @@ public class ShowLaberinto extends javax.swing.JPanel
             {
                 Rectangle rect = new Rectangle(this.getLocationOnScreen(),new Dimension(this.getWidth(),this.getHeight()));
                 BufferedImage imagebuf = new Robot().createScreenCapture(rect);
-                File path = new File("C:\\Users\\julio\\OneDrive\\Escritorio\\Proyecto Laberinto\\src\\Vista");
+                String directoryName = System.getProperty("user.dir");
+                File path = new File(directoryName + "\\src\\Vista");
                 File image = new File(path,this.name+".jpeg");
+                System.out.println("Dirección: " + path);
                 ImageIO.write(imagebuf,"jpeg", image);
                 laberinto.getListaCorridas().get(laberinto.getListaCorridas().size()-1).setLaberinto2(image);
             } 
