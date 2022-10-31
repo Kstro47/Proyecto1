@@ -5,15 +5,21 @@
 package Modelo;
 
 
-public class Node<T>{
-    private T data;
-    private int next;
+public class Node{
+    private String data;
+    private int num;
     private Celda celda;
 
-    public Node(T data, Celda celda){
+    public Node(Celda celda){
+        this.celda = celda;      
+    }
+    
+    public Node(String data){
         this.data = data;
-        this.celda = celda;
-        this.next = -1;       
+    }
+    
+    public Node(int num){
+        this.num = num;
     }
     
 
@@ -26,20 +32,20 @@ public class Node<T>{
     }
     
     
-    public T getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public int getNext() {
-        return next;
+    public int getNum() {
+        return num;
     }
 
-    public void setNext(int next) {
-        this.next = next;
+    public void setNum(int next) {
+        this.num = next;
     }
     
 }

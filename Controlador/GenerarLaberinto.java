@@ -140,10 +140,10 @@ public class GenerarLaberinto implements Serializable {
      * Este método se encarga de generar el laberinto basado en el tipo de
      * algoritmo especificado por el usuario.
      */
-    public void iniciarGeneracion() {
+    public void iniciarGeneracion(int filas, int columnas) {
 
         //Inicio de algoritmo
-        this.algoritmoPrim();
+        this.algoritmoPrim(filas, columnas);
 
     }
 
@@ -153,15 +153,15 @@ public class GenerarLaberinto implements Serializable {
      *
      * Este método se encarga de coordinar el algoritmo de Prim. Este algoritmo
      * consiste en: ANTES DE INICIAR: *- Se selecciona al azar una celda de la
-     * matriz de laberintos y se marca como visitada. *- Se agregan a una lista
+     * matriz de celdas y se marca como visitada. *- Se agregan a una lista
      * los vecinos de esa celda que no han sido visitados. INICIO DEL ALGORITMO:
      * 1- Se selecciona al azar una celda de la lista de vecinos y se marca como
      * visitada. 2- Se agregan los vecinos de dicha celda que no estén visitados
      * a la lista de vecinos. 3- Repetir hasta que la lista de vecinos esté
      * vacía.
      */
-    public void algoritmoPrim() {
-        arrayList listaVecinos = new arrayList(4); //Se genera e inicializa la lista de vecinos.
+    public void algoritmoPrim(int filas, int columnas) {
+        arrayList listaVecinos = new arrayList(filas*columnas); //Se genera e inicializa la lista de vecinos.
         Celda celdaActual = this.seleccionarCelda(listaVecinos); //Previo al inicio del algoritmo se selecciona una celda al azar.
         Celda celdaObjetivo; //Generamos otra celda que será la celda a la cual nos vamos a mover dentro del laberinto.
         while (!listaVecinos.isEmpty()) //Mientras la lista de vecinos no esté vacía.
@@ -195,10 +195,10 @@ public class GenerarLaberinto implements Serializable {
         } else //Si hay al menos 1 celda en la lista de vecinos.
         {
             int randomVecino = this.randomInt(0, listaVecinos.getSize() - 1); //Se escoge un número al azar entre 0 y la longitud de la lista.
-            celdaObjetivo = listaVecinos.getCelda(randomVecino).getCelda(); //Se selecciona una celda de la lista de vecinos dado el número seleccionado.
+            celdaObjetivo = listaVecinos.getNode(randomVecino).getCelda(); //Se selecciona una celda de la lista de vecinos dado el número seleccionado.
             this.asignarVecinos(listaVecinos, celdaObjetivo); //Se asignan los vecinos de la celda seleccionada.
             celdaObjetivo.setVisitada(true); //Se marca como visitada.
-            listaVecinos.remove(randomVecino); //La celda seleccionada se remueve de la lista de vecinos (ya que ya está visitada).
+            listaVecinos.replace(randomVecino); //La celda seleccionada se remueve de la lista de vecinos (ya que ya está visitada).
             return celdaObjetivo; //Retornamos la celda seleccionada.
         }
     }
@@ -218,25 +218,25 @@ public class GenerarLaberinto implements Serializable {
         //Si la fila de la celda actual es mayor que 0 y el vecino de arriba no está visitado, agregamos el vecino de arriba a la lista (siempre y cuando no esté en la misma).
         if (celdaActual.getPosY2() > 0 && !this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()].isVisitada()) {
             if (!listaVecinos.contains(this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()])) {
-                listaVecinos.add(null, this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()]);
+                listaVecinos.addC(this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()]);
             }
         }
         //Si la fila de la celda actual es menor que el total de filas y el vecino de abajo no está visitado, agregamos el vecino de abajo a la lista (siempre y cuando no esté en la misma).
         if (celdaActual.getPosY2() < this.filasLaberinto - 1 && !this.celdas[celdaActual.getPosY2() + 1][celdaActual.getPosX2()].isVisitada()) {
             if (!listaVecinos.contains(this.celdas[celdaActual.getPosY2() + 1][celdaActual.getPosX2()])) {
-                listaVecinos.add(null, this.celdas[celdaActual.getPosY2() + 1][celdaActual.getPosX2()]);
+                listaVecinos.addC(this.celdas[celdaActual.getPosY2() + 1][celdaActual.getPosX2()]);
             }
         }
         //Si la columna de la celda actual es menor que el total de columnas y el vecino derecho no está visitado, agregamos el vecino derecho a la lista (siempre y cuando no esté en la misma).
         if (celdaActual.getPosX2() < this.columnasLaberinto - 1 && !this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() + 1].isVisitada()) {
             if (!listaVecinos.contains(this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() + 1])) {
-                listaVecinos.add(null, this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() + 1]);
+                listaVecinos.addC(this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() + 1]);
             }
         }
         //Si la columna de la celda actual es mayor que 0 y el vecino de izquierdo no está visitado, agregamos el vecino de izquierdo a la lista (siempre y cuando no esté en la misma).
         if (celdaActual.getPosX2() > 0 && !this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() - 1].isVisitada()) {
             if (!listaVecinos.contains(this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() - 1])) {
-                listaVecinos.add(null, this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() - 1]);
+                listaVecinos.addC(this.celdas[celdaActual.getPosY2()][celdaActual.getPosX2() - 1]);
             }
         }
     }
@@ -317,19 +317,19 @@ public class GenerarLaberinto implements Serializable {
         arrayList vecinos = new arrayList(4); //Generamos e inicializamos la lista de los vecinos visitados que tiene la celda.
         //Si el vecino de arriba existe y está visitado agrégalo a la lista.
         if (celdaObjetivo.getVecinoArriba() != null && celdaObjetivo.getVecinoArriba().isVisitada()) {
-            vecinos.add("arriba", null);
+            vecinos.addS("arriba");
         }
         //Si el vecino de abajo existe y está visitado agrégalo a la lista.
         if (celdaObjetivo.getVecinoAbajo() != null && celdaObjetivo.getVecinoAbajo().isVisitada()) {
-            vecinos.add("abajo", null);
+            vecinos.addS("abajo");
         }
         //Si el vecino derecho existe y está visitado agrégalo a la lista.
         if (celdaObjetivo.getVecinoDerecho() != null && celdaObjetivo.getVecinoDerecho().isVisitada()) {
-            vecinos.add("derecho", null);
+            vecinos.addS("derecho");
         }
         //Si el vecino izquierdo existe y está visitado agrégalo a la lista.
         if (celdaObjetivo.getVecinoIzquierdo() != null && celdaObjetivo.getVecinoIzquierdo().isVisitada()) {
-            vecinos.add("izquierdo", null);
+            vecinos.addS("izquierdo");
         }
         return vecinos; //Retornamos la lista de los vecinos visitados de la celda seleccionada.
     }

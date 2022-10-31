@@ -1,22 +1,27 @@
 package Modelo;
 
 public class arrayList<T> {
-
+    
+    private int max;
     private int first;
     private int last;
     private int size;
     private Node[] array;
     
     public arrayList(int max) {
+        this.max = max;
         this.first = this.last = -1;
         this.size = 0;
         this.array = new Node[max];
+        for (int i = 0; i < max; i++) {
+            this.array[i] = new Node(i);
+        }
     }
     
     public boolean contains(Celda celda){
         for (int i = 0; i < size; i++) {
-            if (this.array[0].getCelda() != null){
-                if (this.array[0].getCelda() == celda){
+            if (this.array[i] != null){
+                if (this.array[i].getCelda() == celda){
                     return true;
                 }                
             }
@@ -48,33 +53,42 @@ public class arrayList<T> {
         return -1;
     }
     
-    public Node getCelda(int num){   
+    public Node getNode(int num){   
         return this.array[num];                    
     }
     
-    public Object get(int num){
-        Object data = this.array[num].getData();
+    public String get(int num){
+        String data = this.array[num].getData();
         return data;                    
     }
     
     
-    public void add(T data, Celda celda){
+    public void addS(String data){
         if (!this.isFull()){
-            Node node = new Node(data, celda);
-            int position = this.searchEmptySlot();
-            this.array[position] = node;
-            if (this.isEmpty()){
-                this.first = this.last = position;               
-            } else {
-                this.array[this.last].setNext(position);
-                this.last = position;
-            }
+            Node node = new Node(data);
+            for (int i = 0; i < max; i++) {
+                if (this.array[i].getNum() == i) {
+                    this.array[i] = node;
+                }
+            }    
             this.size++;
-        }    
+        }
+    } 
+    
+    public void addC(Celda celda){
+        if (!this.isFull()){
+            Node node = new Node(celda);
+            for (int i = 0; i < max; i++) {
+                if (this.array[i].getNum() == i) {
+                    this.array[i] = node;
+                }
+            }    
+            this.size++;
+        }
     }
     
-    public void remove(int num){
-        this.array[num] = null; 
+    public void replace(int num){
+        this.array[num] = new Node(num); 
         }
     
     public int getFirst() {
@@ -94,7 +108,7 @@ public class arrayList<T> {
     }
 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     public void setSize(int size) {

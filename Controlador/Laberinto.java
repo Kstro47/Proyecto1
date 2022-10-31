@@ -32,7 +32,7 @@ public class Laberinto implements Serializable
         Laberinto.setFilasLaberinto(filas);
         Laberinto.setColumnasLaberinto(columnas);
         Laberinto.inicializarPanel(); //Inicializo la matriz que será manipulada para generar el laberinto.
-        Laberinto.iniciarGeneracion(); //Inicia la generación del laberinto.
+        Laberinto.iniciarGeneracion(filas, columnas); //Inicia la generación del laberinto.
         listaCorridas.add(Laberinto); //Añado la corrida actual a la lista de corridas.
     }
 
