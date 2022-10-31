@@ -3,18 +3,20 @@ package Controlador;
 /**
  * Controlador.GenerarLaberinto
  *
- * Esta clase en la encargada de generar el Laberinto utilizando el  
- * algoritmo de Prim. Utlizando una Matriz de Ayacencia
+ * Esta clase en la encargada de generar el Laberinto utilizando el algoritmo de
+ * Prim.
  *
  */
 //Librerías
 import Modelo.Celda;
+import Modelo.ListaLaberinto;
+import Modelo.ListaVecinos;
 import java.io.File; //Librería que permite que cada corrida tenga una imagen del laberinto ya generado.
 import java.io.Serializable; //Librería para serializar el objeto y guardarlo en un archivo.
 import java.util.ArrayList; //Librería para poder utilizar todos los métodos de un ArrayList.
 import java.util.Random; //Librería para generar números random.
 
-public class GenerarLaberinto implements Serializable {
+public class GenerarLaberinto implements Serializable  {
 
     //Atributos
     //Definición de Laberinto.
@@ -23,6 +25,9 @@ public class GenerarLaberinto implements Serializable {
     private int anchoCelda; //Datos de la corrida especificados por el usuario.
     private Celda[][] celdas; //La matriz de celdas que representa el laberinto y a partir de la cual se generará el mismo.
     private transient File laberinto2; //La imagen del laberinto.
+
+    public GenerarLaberinto() {
+    }
 
     /**
      * Constructor con parámetros
@@ -162,6 +167,7 @@ public class GenerarLaberinto implements Serializable {
      */
     public void algoritmoPrim() {
         ArrayList<Celda> listaVecinos = new ArrayList<Celda>(); //Se genera e inicializa la lista de vecinos.
+        ListaVecinos listaVecinos2 = new ListaVecinos(null);
         Celda celdaActual = this.seleccionarCelda(listaVecinos); //Previo al inicio del algoritmo se selecciona una celda al azar.
         Celda celdaObjetivo; //Generamos otra celda que será la celda a la cual nos vamos a mover dentro del laberinto.
         while (!listaVecinos.isEmpty()) //Mientras la lista de vecinos no esté vacía.
@@ -219,6 +225,7 @@ public class GenerarLaberinto implements Serializable {
         if (celdaActual.getPosY2() > 0 && !this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()].isVisitada()) {
             if (!listaVecinos.contains(this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()])) {
                 listaVecinos.add(this.celdas[celdaActual.getPosY2() - 1][celdaActual.getPosX2()]);
+                
             }
         }
         //Si la fila de la celda actual es menor que el total de filas y el vecino de abajo no está visitado, agregamos el vecino de abajo a la lista (siempre y cuando no esté en la misma).
@@ -256,8 +263,8 @@ public class GenerarLaberinto implements Serializable {
      * dibujará el camino.
      */
     public void crearCamino(Celda celdaActual, Celda celdaObjetivo) {
-        //System.out.println("CELDA ACT: (" + celdaActual.getPosY2() + "),(" + celdaActual.getPosX2() + ")");
-        //System.out.println("CELDA OBJ: (" + celdaObjetivo.getPosY2() + "),(" + celdaObjetivo.getPosX2() + ")");
+       // System.out.println("CELDA ACT: (" + celdaActual.getPosY2() + "),(" + celdaActual.getPosX2() + ")");
+       // System.out.println("CELDA OBJ: (" + celdaObjetivo.getPosY2() + "),(" + celdaObjetivo.getPosX2() + ")");
         ArrayList<String> vecinos = this.variosVecinos(celdaObjetivo); //Vemos si la celda seleccionada tiene varios vecinos visitados.
         if (vecinos.size() == 1) //Si tiene 1 solo vecino visitado vemos cuál es y dibujamos el camino.
         {

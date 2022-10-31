@@ -1,5 +1,14 @@
 package Modelo;
 
+/**
+* Codigo.Celda
+* 
+* La clase Proyecto del paquete Codigo es la encargada de representar cada "cuadrito" del laberinto para poder ser dibujado o no.
+* 
+* @author sansa.
+
+*/
+
 //Librerías
 import java.io.Serializable; //Librería para serializar el objeto y guardarlo en un archivo.
 

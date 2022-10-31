@@ -1,10 +1,9 @@
 package Vista;
 
 /**
-   La clase permite iniciar el programa para
- * solicitar los datos al usuario *- Tamaño en filas del laberinto. *- Tamaño en
- * columnas del laberinto. *- El ancho y alto (tamaño en píxeles) de cada celda
- * del laberinto.
+ * La clase permite iniciar el programa para solicitar los datos al usuario *-
+ * Tamaño en filas del laberinto. *- Tamaño en columnas del laberinto. *- El
+ * ancho y alto (tamaño en píxeles) de cada celda del laberinto.
  */
 //Librerías
 import java.awt.Color; //Librería para colocarle un color de fondo al actual JFrame.
@@ -19,7 +18,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents(); //Inicia los componentes del JFrame
         this.setLocationRelativeTo(null); //Centra el JFrame o pantalla del usuario.
-        this.getContentPane().setBackground(Color.DARK_GRAY); //Coloca el fondo de la Pantalla en color Azul.
+        this.getContentPane().setBackground(Color.DARK_GRAY); //Coloca el fondo de la Pantalla en color gris.
         this.Etiqueta1.setForeground(Color.WHITE);
         this.Etiqueta2.setForeground(Color.WHITE);
         this.Etiqueta3.setForeground(Color.WHITE);
@@ -28,13 +27,14 @@ public class Main extends javax.swing.JFrame {
         // En investigaciones realizadas recomiendan considerar un
         // Minimo de 11 Filas y 11 Columnas
         filas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
+        columnas.setText(filas.getText());
+
         sliderFilas.setValue(Integer.parseInt(filas.getText()));
- 
-        columnas.setText(String.valueOf((int) (Math.random() * 20 + 10)));
+
         sliderColumnas.setValue(Integer.parseInt(columnas.getText()));
-        
+
         anchoCelda.setText(String.valueOf((int) (30)));
-        
+
         laberinto = new Laberinto(); //Creamos el laberinto.
 
     }
@@ -68,6 +68,18 @@ public class Main extends javax.swing.JFrame {
 
         Etiqueta2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Etiqueta2.setText("Columnas (Ancho)");
+
+        columnas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                columnasFocusLost(evt);
+            }
+        });
+
+        filas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                filasFocusLost(evt);
+            }
+        });
 
         Etiqueta4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Etiqueta4.setText("Ancho de celda (Píxeles)");
@@ -206,25 +218,40 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
     private void sliderFilasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderFilasStateChanged
-        
+
         filas.setText(String.valueOf(sliderFilas.getValue()));
-        
+        columnas.setText(String.valueOf(sliderFilas.getValue()));
+        sliderColumnas.setValue(Integer.parseInt(columnas.getText()));
+
     }//GEN-LAST:event_sliderFilasStateChanged
 
     private void sliderColumnasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderColumnasStateChanged
-        
+        filas.setText(String.valueOf(sliderColumnas.getValue()));
         columnas.setText(String.valueOf(sliderColumnas.getValue()));
-        
+        sliderFilas.setValue(Integer.parseInt(filas.getText()));
+
     }//GEN-LAST:event_sliderColumnasStateChanged
 
     private void sliderAnchoCeldaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderAnchoCeldaStateChanged
-        
-        int p = sliderAnchoCelda.getValue()/10;
-        
-        anchoCelda.setText(String.valueOf(p*10));
+
+        int p = sliderAnchoCelda.getValue() / 10;
+
+        anchoCelda.setText(String.valueOf(p * 10));
         //anchoCelda.setText(String.valueOf(sliderAnchoCelda.getValue()));
-        
+
     }//GEN-LAST:event_sliderAnchoCeldaStateChanged
+
+    private void filasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_filasFocusLost
+        sliderFilas.setValue(Integer.parseInt(filas.getText()));
+        columnas.setText(filas.getText());
+        sliderColumnas.setValue(Integer.parseInt(columnas.getText()));// TODO add your handling code here:
+    }//GEN-LAST:event_filasFocusLost
+
+    private void columnasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_columnasFocusLost
+        sliderColumnas.setValue(Integer.parseInt(columnas.getText()));
+        filas.setText(columnas.getText());
+        sliderFilas.setValue(Integer.parseInt(filas.getText()));
+    }//GEN-LAST:event_columnasFocusLost
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
